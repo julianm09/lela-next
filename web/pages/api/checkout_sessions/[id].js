@@ -1,7 +1,7 @@
 // pages/api/checkout_sessions/[id].js
 
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe("sk_test_51IZlClAcpIvk8gMGo2Jvv31RFrqXtgMPoQAw5MHdF47d6SxpMozSqXp1MmvhjKWrXI1cOUMpQiNUteGXMCWG0K2000mQPDypOx", {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: "2020-03-02",
 });
