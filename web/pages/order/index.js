@@ -15,7 +15,7 @@ const ContainerOne = styled.div`
   overflow: hidden;
   position: relative;
   display: flex;
-  margin: 200px 0 0 0;
+  margin: 250px 0 0 0;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;

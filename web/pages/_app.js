@@ -1,4 +1,5 @@
 import Cart from '../components/Cart';
+import { Footer } from '../components/Footer';
 import { Nav } from '../components/Nav'
 import './app.css'
 
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   <Cart>
   <Nav/>
   <Component {...pageProps} />
+  <Footer/>
   </Cart>
   )
 }

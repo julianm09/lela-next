@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Iframe from "react-iframe";
 
 import { Nav } from "../components/Nav";
+import {Instagram, Facebook, Mail} from 'react-feather'
 
 const ContainerOne = styled.div`
   min-height: 100vh;
@@ -82,7 +83,7 @@ const BackgroundTwo = styled.img`
 
   @media (max-width: 900px) {
     width: 98%;
-    
+
     transform: translateY(-45vw) translateX(-5px);
   }
 `;
@@ -95,7 +96,6 @@ const ImageAbout = styled.img`
   transition: 0.5s ease;
   display: none;
   @media (max-width: 700px) {
-
     font-size: 18px;
 
     width: 80%;
@@ -103,72 +103,63 @@ const ImageAbout = styled.img`
     transform: translateY(800px) translateX(30vw);
     display: none;
   }
-
 `;
 
-const ImageOne = styled.img`
+const ImageOne = styled.div`
   position: absolute;
   width: 28%;
   transform: translateY(130vh) translateX(25vw);
   z-index: -50;
   transition: 0.5s ease;
+  box-shadow: 4px 4px 10px grey;
 
   @media (max-width: 700px) {
     width: 100%;
     opacity: 50%;
     transform: translateY(800px) translateX(15vw);
-  
   }
-
 `;
 
-const ImageTwo = styled.img`
+const ImageTwo = styled.div`
   position: absolute;
   width: 28%;
   transform: translateY(145vh) translateX(-25vw);
   z-index: -100;
   transition: 0.5s ease;
   opacity: 100%;
+  box-shadow: 4px 4px 10px grey;
 
   @media (max-width: 700px) {
     width: 100%;
     transform: translateY(1300px) translateX(25vw);
     opacity: 50%;
-  
   }
-
-
 `;
 
 const TitleUI = styled.h1`
   font-size: 156px;
   font-weight: 900;
-margin: 0;
+  margin: 0;
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #ed2224;
   color: white;
 
-  
   @media (max-width: 900px) {
     font-size: 30vw;
-  
   }
-
 `;
 
 const SubTitleUI = styled.h2`
   font-size: 28px;
   font-weight: 900;
 
+  width: 90%;
+  font-size: 36px;
+  color: #484349;
 
-    width: 90%;
-    font-size: 36px;
-  
-
-    @media (max-width: 900px) {
-      font-size: 5vw;
-    
-    }
+  @media (max-width: 900px) {
+    font-size: 5vw;
+  }
 `;
 
 const HeaderUI = styled.h3`
@@ -178,8 +169,6 @@ const HeaderUI = styled.h3`
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #ed2224;
   color: white;
-
-
 `;
 
 const AboutHeaderUI = styled.h3`
@@ -191,12 +180,10 @@ const AboutHeaderUI = styled.h3`
   color: white;
   @media (max-width: 1500px) {
     width: 60%;
-
   }
 
   @media (max-width: 900px) {
     width: 100%;
-  
   }
 `;
 
@@ -222,7 +209,6 @@ const TextUI = styled.p`
   font-weight: 500;
   line-height: 40px;
   width: 100%;
-
 `;
 
 const LinkUI = styled.div`
@@ -232,13 +218,10 @@ const LinkUI = styled.div`
   display: flex;
   position: relative;
 
-  &:hover{
+  &:hover {
     color: #ed2224;
   }
- 
-
 `;
-
 
 const HeaderRightUI = styled.h3`
   font-size: 56px;
@@ -252,7 +235,6 @@ const HeaderRightUI = styled.h3`
 
   @media (max-width: 900px) {
     width: 100%;
-  
   }
 `;
 
@@ -262,12 +244,87 @@ const TextRightUI = styled.p`
   line-height: 40px;
   width: 50%;
 
-
   @media (max-width: 900px) {
     width: 100%;
-  
   }
 `;
+
+const ButtonUI = styled.div`
+
+
+padding: 0 50px 0;
+height: 50px;
+
+border: none;
+border-radius: 50px;
+outline: none;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+
+font-size: 18px;
+
+cursor: pointer;
+
+
+transition: all 150ms linear;
+box-shadow: inset 0 0 0 2em #ED2224;
+
+border: 2px solid white;
+margin: 50px 0 0 0;
+
+
+&:hover{
+
+  box-shadow: none;
+  background: white;
+  border: 2px solid #ED2224;
+  
+
+color: #ED2024;
+
+}
+
+
+`
+
+
+const TitleContainerUI = styled.div`
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+
+const SocialContainerUI = styled.div`
+position: relative;
+top: 30px;
+color: #ED2224;
+display: flex;
+justify-content: flex-start;
+align-items: flex-start;
+flex-direction: column;
+
+
+
+
+@media (max-width: 900px) {
+  display: none;
+}
+
+
+`
+
+const SocialLinkUI = styled.a`
+
+cursor: pointer;
+color: #ED2024;
+
+&:hover{
+  text-shadow: 4px 4px grey;
+}
+`
 
 export default function Home({ posts }) {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -286,14 +343,39 @@ export default function Home({ posts }) {
 
   return (
     <>
-    
       <ContainerOne>
-        <ColumnUI style={{alignItems: 'flex-start'}}>
-        <TitleUI>Lê La</TitleUI>
-        <SubTitleUI>Authentic Vietnamese Cuisine</SubTitleUI>
+        <ColumnUI style={{ alignItems: "flex-start" }}>
+
+
+<TitleContainerUI>
+<TitleUI>Lê La</TitleUI>
+
+<SocialContainerUI>
+  <SocialLinkUI target="_blank" href="https://www.instagram.com/pholelavietnamese/?hl=en" style={{ margin: "0 0 25px 0" }}>
+  <Instagram size={24}/ >
+  </SocialLinkUI>
+ 
+ <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 0 25px 0" }}>
+ <Facebook size={24}/>
+ </SocialLinkUI>
+
+ <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 0 25px 0" }}>
+ <Mail size={24}/>
+ </SocialLinkUI>
+ 
+</SocialContainerUI>
+
+</TitleContainerUI>
+
+          <SubTitleUI>Authentic Vietnamese Cuisine</SubTitleUI>
+
+          <ButtonUI>
+            Order Pickup
+          </ButtonUI>
         </ColumnUI>
 
-     
+   
+        
 
         {/*         <ul>
           {posts.map((p) => (
@@ -322,15 +404,18 @@ export default function Home({ posts }) {
           src="/about.png"
         ></ImageAbout>
 
-        <ImageOne
-          style={{ top: scrollPosition / 15 }}
-          src="/pho1.jpg"
-        ></ImageOne>
+        <ImageOne style={{ top: scrollPosition / 15 }}>
+          <img width="100%" src="/pho1.jpg" />
+          <img style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
 
-        <ImageTwo
-          style={{ top: scrollPosition / 5 }}
-          src="/pho2.jpg"
-        ></ImageTwo>
+        </ImageOne>
+
+        <ImageTwo style={{ top: scrollPosition / 5 }}>
+          <img width="100%" src="/pho2.jpg" />
+       
+          <img style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
+        </ImageTwo>
+
 
         <ColumnUI>
           <AboutHeaderUI>Our Story</AboutHeaderUI>
@@ -354,40 +439,34 @@ export default function Home({ posts }) {
           <HeaderUI>We're Open</HeaderUI>
           <TextUI>
             Monday - Thursday | 11:00 - 19:00
-            <br /> 
-            Friday - Saturday  |  11:00 - 19:00
-            <br /> 
-            Sunday  |  11:30 - 19:00
+            <br />
+            Friday - Saturday | 11:00 - 19:00
+            <br />
+            Sunday | 11:30 - 19:00
           </TextUI>
         </ColumnUI>
 
-        <ColumnUI style={{alignItems: 'flex-end'}} >
+        <ColumnUI style={{ alignItems: "flex-end", margin: '0 0 100px 0' }}>
           <HeaderRightUI>Find Us At</HeaderRightUI>
-          <TextRightUI>
+          <TextRightUI style={{margin: '0 0 100px 0'}}>
             Bay #4,
             <br />
             6624 Centre Street S.E. Calgary, <br />
             Alberta T2H 0C3
             <br />
             <br />
-            
             <LinkUI href="tel:4032555665">(403)255-5665</LinkUI>
           </TextRightUI>
 
-        </ColumnUI>
-
-        <ColumnUI>
-   
-        <Iframe
+          <Iframe
             url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2511.1371786870677!2d-114.06467528408905!3d50.99513715584795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170f980369ca1%3A0xdcadd8804feeb8ed!2sLe%20La%20Vietnamese%20Restaurant!5e0!3m2!1sen!2sca!4v1627243766700!5m2!1sen!2sca"
             width="100%"
             id="myId"
             className="myClassname"
             height="500px"
-            
           />
+        </ColumnUI>
 
-</ColumnUI>
       </ContainerOne>
     </>
   );

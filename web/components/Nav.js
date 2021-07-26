@@ -7,9 +7,9 @@ import { fetchPostJSON } from "../utils/apiHelpers";
 
 const HeaderUI = styled.div`
   display: flex;
-  height: 125px;
-  width: 100vw;
-  min-height: 100px;
+  height: 15vh;
+  width: 100%;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -19,26 +19,73 @@ const HeaderUI = styled.div`
   z-index: 10000;
   background: white;
   transition: 0.2s ease;
-  font-size: 18px;
+  font-size: 16px;
   color: #484349;
   font-weight: 500;
 `;
 
+const BannerUI = styled.a`
+  display: flex;
+  height: 50px;
+  width: 100vw;
+
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  border-bottom: 2px solid #ED2224;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  background: #ED2224;
+  transition: 0.2s ease;
+  font-size: 16px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+
+  @media (max-width: 400px){
+    font-size: 12px;
+  }
+
+`;
+
+
+const ContainerUI = styled.div`
+display: flex;
+
+
+width: 50%;
+
+justify-content: space-between;
+align-items:  space-between;
+
+@media (max-width: 1500px){
+  width: 80%;
+}
+
+`;
+
+
+
 const NavUI = styled.div`
   display: flex;
   height: 150px;
-  width: 100vw;
+
   min-height: 100px;
-  width: 50%;
+
   justify-content: flex-end;
   align-items: center;
 
   @media (max-width: 1500px) {
     width: 75%;
   }
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 const CartCountUI = styled.div`
-  background: red;
+  background: #ED2224;
   color: white;
   width: 24px;
   height: 24px;
@@ -51,6 +98,7 @@ const CartCountUI = styled.div`
   top: -15px;
   font-size: 14px;
   transition: 1s ease;
+  
 `;
 
 const LogoUI = styled.img`
@@ -154,17 +202,30 @@ export const Nav = ({ width }) => {
   }, [prevScrollPos, visible, handleScroll]);
 
   return (
-    <>
+    <div>
       <HeaderUI
         style={{
-          transform: visible ? "translateY(0px)" : "translateY(-150px)",
+          transform: visible ? "translateY(0px)" : "translateY(-15vh)",
         }}
       >
-        <Link href="/">
-          <LogoUI width="75px" src="/logo.svg" />
-        </Link>
 
+
+        <ContainerUI>
+
+        <Link href="/">
+          <LogoUI style={{ width: '10vh', maxWidth: '75px'}} src="/logo.svg" />
+        </Link>
         <NavUI>
+
+        
+
+        <LinkUI
+            target="_blank"
+            href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+          >
+            menu
+          </LinkUI>
+
           <LinkUI
             target="_blank"
             href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
@@ -177,7 +238,7 @@ export const Nav = ({ width }) => {
           </Link>
 
           <Link href="/merch">
-            <LinkUI>store</LinkUI>
+            <LinkUI>merch</LinkUI>
           </Link>
 
           <Link href="/cart">
@@ -187,7 +248,19 @@ export const Nav = ({ width }) => {
             </LinkUI>
           </Link>
         </NavUI>
+
+        </ContainerUI>
       </HeaderUI>
-    </>
+
+      <BannerUI  
+                  target="_blank"
+                  href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+      style={{
+          transform: visible ? "translateY(0px)" : "translateY(-15vh)",
+        }}>
+          
+          Get 10% off when ordering from our online menu
+        </BannerUI>
+    </div>
   );
 };
