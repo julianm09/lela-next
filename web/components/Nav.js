@@ -26,7 +26,7 @@ const HeaderUI = styled.div`
 
 const BannerUI = styled.a`
   display: flex;
-  height: 50px;
+  height: 48px;
   width: 100vw;
 
   position: fixed;

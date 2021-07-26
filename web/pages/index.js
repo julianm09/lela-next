@@ -94,7 +94,7 @@ const ImageAbout = styled.img`
   transform: translateY(75vh) translateX(-35vw);
   z-index: -50;
   transition: 0.5s ease;
-  display: none;
+
   @media (max-width: 700px) {
     font-size: 18px;
 
@@ -156,6 +156,7 @@ const SubTitleUI = styled.h2`
   width: 90%;
   font-size: 36px;
   color: #484349;
+  margin: 0;
 
   @media (max-width: 900px) {
     font-size: 5vw;
@@ -272,7 +273,7 @@ transition: all 150ms linear;
 box-shadow: inset 0 0 0 2em #ED2224;
 
 border: 2px solid white;
-margin: 50px 0 0 0;
+margin: 10vh 0 0 0;
 
 
 &:hover{
@@ -343,8 +344,8 @@ export default function Home({ posts }) {
 
   return (
     <>
-      <ContainerOne>
-        <ColumnUI style={{ alignItems: "flex-start" }}>
+      <ContainerOne style={{ justifyContent: "flex-start", margin: '10vh 0 0 0'}}>
+        <ColumnUI style={{ alignItems: "flex-start"}}>
 
 
 <TitleContainerUI>
