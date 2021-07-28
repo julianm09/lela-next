@@ -14,6 +14,7 @@ import Menu from "../components/Menu";
 
 const ContainerOne = styled.div`
   min-height: 100vh;
+
   overflow: hidden;
   position: relative;
   display: flex;
@@ -22,6 +23,28 @@ const ContainerOne = styled.div`
   flex-direction: column;
   color: #484349;
   font-family: "Noto Sans JP", sans-serif;
+  margin: 0vh 0 0 0;
+  @media(max-height: 800px){
+    margin: 10vh 0 0 0;
+  }
+
+`;
+
+const ContainerTwo = styled.div`
+  min-height: 100vh;
+
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #484349;
+  font-family: "Noto Sans JP", sans-serif;
+  margin: 0vh 0 0 0;
+  @media(max-height: 800px){
+    margin: 00vh 0 0 0;
+  }
 
 `;
 
@@ -124,8 +147,20 @@ const ImageOne = styled.div`
   @media (max-width: 700px) {
     width: 100%;
     opacity: 25%;
-    transform: translateY(100vh) translateX(0vw);
+    transform: translateY(110vh) translateX(0vw);
     box-shadow: none;
+  }
+
+  @media (max-width: 400px) {
+
+    transform: translateY(130vh) translateX(0vw);
+    
+  }
+
+  @media (max-height: 600px) {
+
+    transform: translateY(180vh) translateX(0vw);
+    
   }
 `;
 
@@ -143,6 +178,12 @@ const ImageTwo = styled.div`
     transform: translateY(125vh) translateX(0vw);
     opacity: 25%;
     box-shadow: none;
+  }
+
+  @media (max-height: 600px) {
+
+    transform: translateY(180vh) translateX(0vw);
+    
   }
 `;
 
@@ -365,7 +406,7 @@ export default function Home({ posts }) {
   return (
     <>
     <Menu menuActive={menuActive} setMenuActive={setMenuActive}/>
-      <ContainerOne style={{ justifyContent: "flex-start", margin: '10vh 0 0 0'}}>
+      <ContainerOne style={{ justifyContent: "flex-start"}}>
         <ColumnUI style={{ alignItems: "flex-start"}}>
 
 
@@ -417,7 +458,7 @@ export default function Home({ posts }) {
         ></BackgroundOne>
       </ContainerOne>
 
-      <ContainerOne>
+      <ContainerTwo>
         <BackgroundTwo
           style={{ top: scrollPosition / 10 }}
           src="/logo.svg"
@@ -443,7 +484,7 @@ export default function Home({ posts }) {
         <img style={{ transition: '1s ease', position: 'absolute',bottom: '5px', left: -1000 + scrollPosition/5}} height="25px" src="/pattern.svg"/>
 
 
-        <ColumnUI >
+        <ColumnUI>
           <AboutHeaderUI>Our Story</AboutHeaderUI>
           <AboutTextUI>
             Van Le grew up in the south of Vietnam, in the city of Ho Chi Min.
@@ -500,7 +541,7 @@ export default function Home({ posts }) {
         </ColumnUI>
 
 
-      </ContainerOne>
+      </ContainerTwo>
     </>
   );
 }

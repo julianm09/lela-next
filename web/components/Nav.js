@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
 import Menu from "./Menu";
+import MobileNav from "./MobileNav";
+import { Instagram, Facebook, Mail, X, Menu as MenuIcon } from "react-feather";
 
 const HeaderUI = styled.div`
   display: flex;
@@ -33,40 +35,34 @@ const BannerUI = styled.a`
   position: fixed;
   top: 15vh;
   left: 0;
-  border-bottom: 2px solid #ED2224;
+  border-bottom: 2px solid #ed2224;
   justify-content: center;
   align-items: center;
-  z-index: 10000;
-  background: #ED2224;
+  z-index: 1000;
+  background: #ed2224;
   transition: 0.2s ease;
   font-size: 16px;
   color: white;
   font-weight: 400;
   cursor: pointer;
 
-  @media (max-width: 400px){
+  @media (max-width: 400px) {
     font-size: 12px;
   }
-
 `;
-
 
 const ContainerUI = styled.div`
-display: flex;
+  display: flex;
 
+  width: 50%;
 
-width: 50%;
+  justify-content: space-between;
+  align-items: center;
 
-justify-content: space-between;
-align-items:  space-between;
-
-@media (max-width: 1500px){
-  width: 80%;
-}
-
+  @media (max-width: 1500px) {
+    width: 80%;
+  }
 `;
-
-
 
 const NavUI = styled.div`
   display: flex;
@@ -81,12 +77,12 @@ const NavUI = styled.div`
     width: 75%;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 `;
 const CartCountUI = styled.div`
-  background: #ED2224;
+  background: #ed2224;
   color: white;
   width: 24px;
   height: 24px;
@@ -99,7 +95,6 @@ const CartCountUI = styled.div`
   top: -15px;
   font-size: 14px;
   transition: 1s ease;
-  
 `;
 
 const LogoUI = styled.img`
@@ -113,11 +108,25 @@ const LinkUI = styled.a`
   display: flex;
   position: relative;
   color: #484349;
+  
 
   &:hover {
     color: #ed2224;
   }
 `;
+
+const MobileIconUI = styled.div`
+
+
+height: 100%;
+display: flex;
+align-items: center;
+
+@media (min-width: 1300px) {
+  display: none;
+}
+
+`
 
 export const Nav = ({ width }) => {
   //setting up some React states for our cart
@@ -165,7 +174,15 @@ export const Nav = ({ width }) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
-  const [menuActive, setMenuActive] = useState(false)
+  const [menuActive, setMenuActive] = useState(false);
+  const [mobileNavActive, setMobileNavActive] = useState(false);
+
+  const handleMobileMenu = () => {
+    setMobileNavActive(!mobileNavActive)
+
+    mobileNavActive ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
+    
+  }
 
   function debounce(func, wait, immediate) {
     var timeout;
@@ -210,59 +227,67 @@ export const Nav = ({ width }) => {
           transform: visible ? "translateY(0px)" : "translateY(-15vh)",
         }}
       >
-
-
         <ContainerUI>
+          <MobileNav
+            mobileNavActive={mobileNavActive}
+            setMobileNavActive={setMobileNavActive}
+            handleMobileMenu={handleMobileMenu}
+            menuActive={menuActive}
+            setMenuActive={setMenuActive}
+          />
 
-        <Link href="/">
-          <LogoUI style={{ width: '10vh', maxWidth: '75px'}} src="/logo.svg" />
-        </Link>
-        <NavUI>
-
-        
-
-        <LinkUI
-            onClick={() => setMenuActive(true)}
-          >
-            menu
-          </LinkUI>
-
-          <LinkUI
-            target="_blank"
-            href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
-          >
-            takeout
-          </LinkUI>
-
-          <Link href="/order">
-            <LinkUI>made to order</LinkUI>
+          <Link href="/">
+            <LogoUI
+              style={{ width: "10vh", maxWidth: "75px" }}
+              src="/logo.svg"
+            />
           </Link>
+          <NavUI>
+            <LinkUI onClick={() => setMenuActive(true)}>menu</LinkUI>
 
-          <Link href="/merch">
-            <LinkUI>merch</LinkUI>
-          </Link>
-
-          <Link href="/cart">
-            <LinkUI>
-              cart
-              {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
+            <LinkUI
+              target="_blank"
+              href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
+            >
+              takeout
             </LinkUI>
-          </Link>
-        </NavUI>
+
+            <Link href="/order">
+              <LinkUI>made to order</LinkUI>
+            </Link>
+
+            <Link href="/merch">
+              <LinkUI>merch</LinkUI>
+            </Link>
+
+            <Link href="/cart">
+              <LinkUI>
+                cart
+                {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
+              </LinkUI>
+            </Link>
+          </NavUI>
+
+
+          <MobileIconUI>
+            {mobileNavActive ? <X onClick={handleMobileMenu}/> : <MenuIcon onClick={handleMobileMenu}/>}
+          </MobileIconUI>
+          
+
 
         </ContainerUI>
       </HeaderUI>
 
-      <BannerUI  
-                  target="_blank"
-                  onClick={() => setMenuActive(true)}
-      style={{
+      <BannerUI
+        target="_blank"
+        onClick={() => setMenuActive(true)}
+        style={{
           transform: visible ? "translateY(0px)" : "translateY(-15vh)",
-        }}>
-          
-          Get 10% off when ordering from our online menu
-        </BannerUI>
-        <Menu menuActive={menuActive} setMenuActive={setMenuActive}/>
+        }}
+      >
+        Get 10% off when ordering from our online menu
+      </BannerUI>
+      <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
     </div>
   );
 };
