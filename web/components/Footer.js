@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
-import {Instagram, Facebook} from "react-feather"
+import {Instagram, Facebook, Mail} from "react-feather"
 
 const HeaderUI = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const HeaderUI = styled.div`
   color: #ffffff;
   font-weight: 500;
   margin: 0;
-  
+  z-index: 0;
 padding: 100px 0;
 `;
 
@@ -92,6 +92,17 @@ const LinkUI = styled.a`
   }
 `;
 
+const SocialLinkUI = styled.a`
+
+cursor: pointer;
+color: white;
+
+
+&:hover{
+  color: #ED2024;
+}
+`
+
 export const Footer = ({ width }) => {
 
   return (
@@ -150,8 +161,19 @@ export const Footer = ({ width }) => {
           Follow Us
           </FooterTextUI>
           <FooterTextUI>
-          <Instagram style={{margin:'0 25px 0 0'}}/>
-          <Facebook/>
+
+
+          <SocialLinkUI target="_blank" href="https://www.instagram.com/pholelavietnamese/?hl=en" style={{ margin: "0 25px 0 0" }}>
+  <Instagram size={24}/ >
+  </SocialLinkUI>
+ 
+ <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 25px 0 0" }}>
+ <Facebook size={24}/>
+ </SocialLinkUI>
+
+ <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 25px 0 0" }}>
+ <Mail size={24}/>
+ </SocialLinkUI>
           </FooterTextUI>
 
 

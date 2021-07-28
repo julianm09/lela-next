@@ -8,6 +8,9 @@ import Iframe from "react-iframe";
 
 import { Nav } from "../components/Nav";
 import {Instagram, Facebook, Mail} from 'react-feather'
+import Menu from "../components/Menu";
+
+
 
 const ContainerOne = styled.div`
   min-height: 100vh;
@@ -19,6 +22,7 @@ const ContainerOne = styled.div`
   flex-direction: column;
   color: #484349;
   font-family: "Noto Sans JP", sans-serif;
+
 `;
 
 const RowUI = styled.div`
@@ -40,7 +44,7 @@ const RowUI = styled.div`
 
 const ColumnUI = styled.div`
   min-height: 100vh;
-  overflow: hidden;
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -94,6 +98,7 @@ const ImageAbout = styled.img`
   transform: translateY(75vh) translateX(-35vw);
   z-index: -50;
   transition: 0.5s ease;
+  display: none;
 
   @media (max-width: 700px) {
     font-size: 18px;
@@ -108,31 +113,36 @@ const ImageAbout = styled.img`
 const ImageOne = styled.div`
   position: absolute;
   width: 28%;
-  transform: translateY(130vh) translateX(25vw);
+  object-fit: cover;
+  transform: translateY(100vh) translateX(25vw);
   z-index: -50;
   transition: 0.5s ease;
-  box-shadow: 4px 4px 10px grey;
+  box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+
+  min-width: 400px;
 
   @media (max-width: 700px) {
     width: 100%;
-    opacity: 50%;
-    transform: translateY(800px) translateX(15vw);
+    opacity: 25%;
+    transform: translateY(100vh) translateX(0vw);
+    box-shadow: none;
   }
 `;
 
 const ImageTwo = styled.div`
   position: absolute;
   width: 28%;
-  transform: translateY(145vh) translateX(-25vw);
+  transform: translateY(115vh) translateX(-25vw);
   z-index: -100;
   transition: 0.5s ease;
   opacity: 100%;
-  box-shadow: 4px 4px 10px grey;
-
+  box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+  min-width: 400px;
   @media (max-width: 700px) {
     width: 100%;
-    transform: translateY(1300px) translateX(25vw);
-    opacity: 50%;
+    transform: translateY(125vh) translateX(0vw);
+    opacity: 25%;
+    box-shadow: none;
   }
 `;
 
@@ -170,6 +180,7 @@ const HeaderUI = styled.h3`
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #ed2224;
   color: white;
+  
 `;
 
 const AboutHeaderUI = styled.h3`
@@ -180,7 +191,7 @@ const AboutHeaderUI = styled.h3`
   -webkit-text-stroke-color: #ed2224;
   color: white;
   @media (max-width: 1500px) {
-    width: 60%;
+    width: 1000%;
   }
 
   @media (max-width: 900px) {
@@ -196,7 +207,7 @@ const AboutTextUI = styled.p`
   line-height: 40px;
 
   @media (max-width: 1500px) {
-    width: 60%;
+    width: 100%;
     font-size: 18px;
   }
   @media (max-width: 900px) {
@@ -234,7 +245,7 @@ const HeaderRightUI = styled.h3`
 
   width: 50%;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     width: 100%;
   }
 `;
@@ -245,7 +256,7 @@ const TextRightUI = styled.p`
   line-height: 40px;
   width: 50%;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     width: 100%;
   }
 `;
@@ -327,8 +338,17 @@ color: #ED2024;
 }
 `
 
+const CornerUI = styled.img`
+display: flex;
+@media (max-width: 700px) {
+  display: none;
+}
+`
+
 export default function Home({ posts }) {
   const [scrollPosition, setScrollPosition] = useState(0);
+
+  const [menuActive, setMenuActive] = useState(false)
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
@@ -344,6 +364,7 @@ export default function Home({ posts }) {
 
   return (
     <>
+    <Menu menuActive={menuActive} setMenuActive={setMenuActive}/>
       <ContainerOne style={{ justifyContent: "flex-start", margin: '10vh 0 0 0'}}>
         <ColumnUI style={{ alignItems: "flex-start"}}>
 
@@ -370,7 +391,7 @@ export default function Home({ posts }) {
 
           <SubTitleUI>Authentic Vietnamese Cuisine</SubTitleUI>
 
-          <ButtonUI>
+          <ButtonUI onClick={() => setMenuActive(true)}>
             Order Pickup
           </ButtonUI>
         </ColumnUI>
@@ -387,6 +408,8 @@ export default function Home({ posts }) {
             </li>
           ))}
         </ul> */}
+
+    
 
         <BackgroundOne
           style={{ bottom: -scrollPosition / 10 }}
@@ -407,18 +430,20 @@ export default function Home({ posts }) {
 
         <ImageOne style={{ top: scrollPosition / 15 }}>
           <img width="100%" src="/pho1.jpg" />
-          <img style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
+          <CornerUI style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
 
         </ImageOne>
 
-        <ImageTwo style={{ top: scrollPosition / 5 }}>
+        <ImageTwo style={{ top: scrollPosition / 3 }}>
           <img width="100%" src="/pho2.jpg" />
        
-          <img style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
+          <CornerUI style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
         </ImageTwo>
 
+        <img style={{ transition: '1s ease', position: 'absolute',bottom: '5px', left: -1000 + scrollPosition/5}} height="25px" src="/pattern.svg"/>
 
-        <ColumnUI>
+
+        <ColumnUI >
           <AboutHeaderUI>Our Story</AboutHeaderUI>
           <AboutTextUI>
             Van Le grew up in the south of Vietnam, in the city of Ho Chi Min.
@@ -436,7 +461,7 @@ export default function Home({ posts }) {
           </AboutTextUI>
         </ColumnUI>
 
-        <ColumnUI>
+        <ColumnUI >
           <HeaderUI>We're Open</HeaderUI>
           <TextUI>
             Monday - Thursday | 11:00 - 19:00
@@ -447,7 +472,7 @@ export default function Home({ posts }) {
           </TextUI>
         </ColumnUI>
 
-        <ColumnUI style={{ alignItems: "flex-end", margin: '0 0 100px 0' }}>
+        <ColumnUI style={{ alignItems: "flex-end", margin: '0 0 150px 0' }}>
           <HeaderRightUI>Find Us At</HeaderRightUI>
           <TextRightUI style={{margin: '0 0 100px 0'}}>
             Bay #4,
@@ -459,14 +484,21 @@ export default function Home({ posts }) {
             <LinkUI href="tel:4032555665">(403)255-5665</LinkUI>
           </TextRightUI>
 
+     
+ 
           <Iframe
             url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2511.1371786870677!2d-114.06467528408905!3d50.99513715584795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170f980369ca1%3A0xdcadd8804feeb8ed!2sLe%20La%20Vietnamese%20Restaurant!5e0!3m2!1sen!2sca!4v1627243766700!5m2!1sen!2sca"
-            width="100%"
+            width="99%"
             id="myId"
-            className="myClassname"
+            className="iframe-map"
             height="500px"
+       
           />
+  
+
+
         </ColumnUI>
+
 
       </ContainerOne>
     </>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
+import Menu from "./Menu";
 
 const HeaderUI = styled.div`
   display: flex;
@@ -164,6 +165,7 @@ export const Nav = ({ width }) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
+  const [menuActive, setMenuActive] = useState(false)
 
   function debounce(func, wait, immediate) {
     var timeout;
@@ -220,8 +222,7 @@ export const Nav = ({ width }) => {
         
 
         <LinkUI
-            target="_blank"
-            href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+            onClick={() => setMenuActive(true)}
           >
             menu
           </LinkUI>
@@ -254,13 +255,14 @@ export const Nav = ({ width }) => {
 
       <BannerUI  
                   target="_blank"
-                  href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+                  onClick={() => setMenuActive(true)}
       style={{
           transform: visible ? "translateY(0px)" : "translateY(-15vh)",
         }}>
           
           Get 10% off when ordering from our online menu
         </BannerUI>
+        <Menu menuActive={menuActive} setMenuActive={setMenuActive}/>
     </div>
   );
 };

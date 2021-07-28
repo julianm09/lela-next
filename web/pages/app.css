@@ -1,15 +1,35 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap'); */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 html, body{
     margin: 0;
     padding: 0;
     font-family: "Noto Sans JP", sans-serif;
+    
 }
 
 
 main{
     margin: 200px 0 0 0;
+
 }
 
+.iframe-map, .food-image{
+  
+    box-sizing: border-box;
+    border: 3px solid #d2d2d2;
+    border-radius: 10px;
+    z-index: 100;
+    box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+}
+
+.iframe{
+  
+    box-sizing: border-box;
+    border: 3px solid grey;
+    border-radius: 10px;
+    z-index: 100;
+    box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+}
