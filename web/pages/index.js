@@ -157,7 +157,7 @@ const ImageOne = styled.div`
     
   }
 
-  @media (max-height: 600px) {
+  @media (max-height: 700px) and (max-width: 400px) {
 
     transform: translateY(180vh) translateX(0vw);
     
@@ -180,7 +180,13 @@ const ImageTwo = styled.div`
     box-shadow: none;
   }
 
-  @media (max-height: 600px) {
+  @media (max-height: 500px) {
+
+    transform: translateY(180vh) translateX(0vw);
+    
+  }
+
+  @media (max-height: 700px) and (max-width: 400px) {
 
     transform: translateY(180vh) translateX(0vw);
     
@@ -195,7 +201,7 @@ const TitleUI = styled.h1`
   -webkit-text-stroke-color: #ed2224;
   color: white;
 
-  @media (max-width: 900px) {
+  @media (max-width: 600px) {
     font-size: 30vw;
   }
 `;

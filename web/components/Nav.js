@@ -7,6 +7,7 @@ import { fetchPostJSON } from "../utils/apiHelpers";
 import Menu from "./Menu";
 import MobileNav from "./MobileNav";
 import { Instagram, Facebook, Mail, X, Menu as MenuIcon } from "react-feather";
+import useWindowSize from "./useWindowSize";
 
 const HeaderUI = styled.div`
   display: flex;
@@ -121,6 +122,7 @@ const MobileIconUI = styled.div`
 height: 100%;
 display: flex;
 align-items: center;
+cursor: pointer;
 
 @media (min-width: 1300px) {
   display: none;
@@ -155,21 +157,9 @@ export const Nav = ({ width }) => {
     //if nothing went wrong, sends user to Stripe checkout
     redirectToCheckout({ sessionId: response.id });
   };
-  const [active, setActive] = useState(false);
 
-  useEffect(() => {
-    if (active) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [active]);
 
-  useEffect(() => {
-    if (width >= 1000) {
-      setActive(false);
-    }
-  }, [width]);
+
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -183,6 +173,15 @@ export const Nav = ({ width }) => {
     mobileNavActive ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
     
   }
+
+  useEffect(() => {
+    if (width >= 1000) {
+      setMobileNavActive(false);
+      document.body.style.overflow = "auto"
+    }
+  }, [width]);
+
+
 
   function debounce(func, wait, immediate) {
     var timeout;
