@@ -11,6 +11,9 @@ import {Instagram, Facebook, Mail} from 'react-feather'
 import Menu from "../components/Menu";
 import { infoQuery } from "../lib/sanity/infoQuery";
 
+import AOS from 'aos';
+import "aos/dist/aos.css";
+
 
 
 const ContainerOne = styled.div`
@@ -438,6 +441,8 @@ export async function getStaticProps({ params }) {
   const info = await client.fetch(infoQuery);
 
 
+
+
   return {
     props: {
       info,
@@ -446,24 +451,18 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Home  ({ info }) {
+export default function Home  ({ info, scrollPosition }) {
 
-  console.log(info)
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const [menuActive, setMenuActive] = useState(false)
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    AOS.init({
+      duration : 1000
+    });
   }, []);
+
+  console.log(info)
+  const [menuActive, setMenuActive] = useState(false)
+
 
   return (
     <>
@@ -536,7 +535,7 @@ export default function Home  ({ info }) {
         <img style={{ transition: '1s ease', position: 'absolute',bottom: '5px', left: -1000 + scrollPosition/5}} height="25px" src="/pattern.svg"/>
 
 
-        <ColumnUI style={{margin:'100px 0 0 0', flexDirection: 'column'}}>
+        <ColumnUI style={{margin:'100px 0 0 0', flexDirection: 'column'}}   data-aos="fade-right">
           <AboutHeaderUI>Our Story</AboutHeaderUI>
           <AboutTextUI>
             Van Le grew up in the south of Vietnam, in the city of Ho Chi Min.
@@ -554,9 +553,9 @@ export default function Home  ({ info }) {
           </AboutTextUI>
         </ColumnUI>
 
-        <ColumnReverseUI style={{margin:'200px 0 100px 0', alignItems: "center", justifyContent: "space-between"}}>
+        <ColumnReverseUI style={{margin:'100px 0 100px 0', alignItems: "center", justifyContent: "space-between"}}>
 
-          <LeftUI>
+          <LeftUI data-aos="fade-right">
 
           <HeaderUI>We're Open</HeaderUI>
           <TextUI>
@@ -570,7 +569,7 @@ export default function Home  ({ info }) {
             
           </LeftUI>
 
-          <ImageOne style={{ top: -100 + scrollPosition / 15 }}>
+          <ImageOne style={{ top: scrollPosition / 35 }}>
           <img width="100%" src="/pho1.jpg" />
           <CornerUI style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
 
@@ -579,9 +578,9 @@ export default function Home  ({ info }) {
 
         </ColumnReverseUI>
 
-        <ColumnUI style={{ alignItems: "center", justifyContent: "space-between", margin: '100px 0 200px 0' }}>
+        <ColumnUI style={{ alignItems: "center", justifyContent: "space-between", margin: '0px 0 200px 0' }}>
 
-        <ImageOne style={{ top: -100 + scrollPosition / 20 }}>
+        <ImageOne style={{ top: scrollPosition / 30 }}>
           <img width="100%" src="/pho2.jpg" />
        
           <CornerUI style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
@@ -589,7 +588,7 @@ export default function Home  ({ info }) {
 
           
 
-          <RightUI>
+          <RightUI data-aos="fade-left">
 
        
           

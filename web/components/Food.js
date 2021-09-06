@@ -11,12 +11,14 @@ const GridUI = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  position: relative;
   align-content: space-around;
   justify-content: space-between;
+  transition: 0.5s ease;
 
   grid-gap: 100px;
   margin: 0 0 100px;
+  font-family: "Noto Sans JP", sans-serif;
 `;
 
 const ContainerUI = styled.div`
@@ -36,7 +38,7 @@ const RowUI = styled.div`
   display: flex;
 
   justify-content: space-between;
-align-items: center;
+  align-items: flex-start;
   @media (max-width: 1000px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -52,7 +54,8 @@ const ColumnUI = styled.div`
 
 const NameUI = styled.div`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 900;
+  margin: 0 0 10px 0;
   @media (max-width: 1000px) {
     margin: 20px 0 10px 0;
   }
@@ -125,7 +128,7 @@ const ButtonUI = styled.button`
   cursor: pointer;
 `;
 
-const Food = ({ food }) => {
+const Food = ({ food, scrollposition }) => {
   const { addItem, removeItem, checkoutSingleItem } = useShoppingCart();
 
   const handleAddToCart = (product) => {
@@ -139,7 +142,7 @@ const Food = ({ food }) => {
   };
 
   return (
-    <GridUI>
+    <GridUI style={{top: -scrollposition / 30}}>
       {food
         .filter((product) => product.method == "pickup")
         .map((product) => (
@@ -183,7 +186,7 @@ const Food = ({ food }) => {
               </RowUI>
 
               <ColumnUI>
-                <PickupUI style={{ color: "#ed2224" }}>
+                <PickupUI style={{ color: "#ed2224", display: 'flex', justifyContent: 'flex-end' }}>
                   order before {moment(product.pickupdate).format("MM/DD/YYYY")}
                 </PickupUI>
 

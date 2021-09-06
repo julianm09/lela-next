@@ -253,7 +253,7 @@ export const CartSummary = () => {
         <ButtonUI
           style={{
             color: "white",
-            background: "#ed2224",
+            background:"#ed2224"
 
           }}
           className="cart-style-background"

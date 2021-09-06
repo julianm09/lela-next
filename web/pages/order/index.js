@@ -9,6 +9,7 @@ import styled from 'styled-components'
 
 import { Nav } from '../../components/Nav'
 import Food from "../../components/Food";
+import { useEffect, useState } from "react";
 
 const ContainerOne = styled.div`
 
@@ -95,13 +96,13 @@ const AlertUI = styled.p`
 `;
 
 
-const Order = ({ products, food }) => {
+const Order = ({ products, food, scrollposition }) => {
   
   return (
     <ContainerOne>
  
 
-<ColumnUI>
+<ColumnUI >
 
 <HeaderUI>Made To Order</HeaderUI>
 
@@ -110,7 +111,7 @@ const Order = ({ products, food }) => {
 <AlertUI>* All items must be picked up at our restaurant, pickup dates vary.</AlertUI>
 
 
-<Food food={products}/>
+<Food food={products} scrollposition={scrollposition}/>
 
 </ColumnUI>
 
