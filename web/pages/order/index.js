@@ -11,11 +11,11 @@ import { Nav } from '../../components/Nav'
 import Food from "../../components/Food";
 
 const ContainerOne = styled.div`
-  min-height: 100vh;
-  overflow: hidden;
+
+ 
   position: relative;
   display: flex;
-  margin: 250px 0 0 0;
+  margin: 200px 0 0 0;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -42,7 +42,7 @@ const RowUI = styled.div`
 
 const ColumnUI = styled.div`
   min-height: 100vh;
-  overflow: hidden;
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -80,10 +80,23 @@ const TextUI = styled.p`
   line-height: 40px;
   width: 100%;
   margin: 0;
-  margin: 50px 0 100px 0;
+  margin: 50px 0 0px 0;
 `;
 
+
+const AlertUI = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
+  width: 100%;
+  margin: 0;
+  margin: 0px 0 100px 0;
+  color: #ed2224;
+`;
+
+
 const Order = ({ products, food }) => {
+  
   return (
     <ContainerOne>
  
@@ -92,7 +105,9 @@ const Order = ({ products, food }) => {
 
 <HeaderUI>Made To Order</HeaderUI>
 
-<TextUI>Specialty items made to order, all items must be picked up at our restaurant, pickup dates vary.</TextUI>
+<TextUI>Specialty items made to order.</TextUI>
+
+<AlertUI>* All items must be picked up at our restaurant, pickup dates vary.</AlertUI>
 
 
 <Food food={products}/>

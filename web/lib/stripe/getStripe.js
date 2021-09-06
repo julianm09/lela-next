@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 let stripePromise;
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+    stripePromise = loadStripe('pk_test_51JFU6sHU3r8RBID1jeFCVorTwBqfnzKodOBxSKtpzVVzXrnI4ZfXDrtHdKUkonf8vB5TSOMZ5q3skO46eQwWuEG000ytyAasAg');
   }
   return stripePromise;
 };

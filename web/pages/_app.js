@@ -2,7 +2,9 @@ import Cart from '../components/Cart';
 import { Footer } from '../components/Footer';
 import { Nav } from '../components/Nav'
 import useWindowSize from '../components/useWindowSize';
-import './app.css'
+import './app.css';
+
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -15,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   <Cart>
   <Nav width={size.width}/>
   <Component {...pageProps} />
-  <Footer/>
+  <Footer {...pageProps} />
   </Cart>
   )
 }

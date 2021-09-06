@@ -9,11 +9,12 @@ import Iframe from "react-iframe";
 import { Nav } from "../components/Nav";
 import {Instagram, Facebook, Mail} from 'react-feather'
 import Menu from "../components/Menu";
+import { infoQuery } from "../lib/sanity/infoQuery";
 
 
 
 const ContainerOne = styled.div`
-  min-height: 100vh;
+ 
 
   overflow: hidden;
   position: relative;
@@ -31,7 +32,7 @@ const ContainerOne = styled.div`
 `;
 
 const ContainerTwo = styled.div`
-  min-height: 100vh;
+
 
   overflow: hidden;
   position: relative;
@@ -66,24 +67,50 @@ const RowUI = styled.div`
 `;
 
 const ColumnUI = styled.div`
-  min-height: 100vh;
+
 
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   color: #484349;
   width: 50%;
 
   @media (max-width: 1500px) {
-    flex-direction: column;
+
     width: 80%;
   }
 
   @media (max-width: 900px) {
     flex-direction: column;
     width: 90%;
+    text-align: center;
+  }
+
+
+`;
+
+const ColumnReverseUI = styled.div`
+
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  color: #484349;
+  width: 50%;
+
+  @media (max-width: 1500px) {
+
+    width: 80%;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column-reverse;
+    width: 90%;
+    text-align: center;
   }
 `;
 
@@ -134,34 +161,23 @@ const ImageAbout = styled.img`
 `;
 
 const ImageOne = styled.div`
-  position: absolute;
-  width: 28%;
+  position: relative;
+  width: 50%;
   object-fit: cover;
-  transform: translateY(100vh) translateX(25vw);
+  
   z-index: -50;
   transition: 0.5s ease;
   box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+  display: flex;
 
   min-width: 400px;
 
   @media (max-width: 700px) {
     width: 100%;
-    opacity: 25%;
-    transform: translateY(110vh) translateX(0vw);
-    box-shadow: none;
+    margin: 100px 0;
   }
 
-  @media (max-width: 400px) {
 
-    transform: translateY(130vh) translateX(0vw);
-    
-  }
-
-  @media (max-height: 700px) and (max-width: 400px) {
-
-    transform: translateY(180vh) translateX(0vw);
-    
-  }
 `;
 
 const ImageTwo = styled.div`
@@ -169,6 +185,7 @@ const ImageTwo = styled.div`
   width: 28%;
   transform: translateY(115vh) translateX(-25vw);
   z-index: -100;
+  display: flex;
   transition: 0.5s ease;
   opacity: 100%;
   box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
@@ -237,13 +254,7 @@ const AboutHeaderUI = styled.h3`
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #ed2224;
   color: white;
-  @media (max-width: 1500px) {
-    width: 1000%;
-  }
 
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 `;
 
 const AboutTextUI = styled.p`
@@ -252,6 +263,7 @@ const AboutTextUI = styled.p`
   font-size: 18px;
   font-weight: 500;
   line-height: 40px;
+  text-align: left;
 
   @media (max-width: 1500px) {
     width: 100%;
@@ -268,14 +280,18 @@ const TextUI = styled.p`
   font-weight: 500;
   line-height: 40px;
   width: 100%;
+
+
 `;
 
-const LinkUI = styled.div`
+const LinkUI = styled.a`
   text-decoration: none;
   cursor: pointer;
 
-  display: flex;
+
   position: relative;
+  color: #484349;
+ 
 
   &:hover {
     color: #ed2224;
@@ -392,7 +408,47 @@ display: flex;
 }
 `
 
-export default function Home({ posts }) {
+const RightUI = styled.div`
+display: flex;
+
+flex-direction: column;
+
+
+@media (max-width: 700px) {
+  width: 100%;
+}
+
+
+`
+
+const LeftUI = styled.div`
+display: flex;
+
+flex-direction: column;
+
+@media (max-width: 700px) {
+  width: 100%;
+}
+
+`
+
+
+
+export async function getStaticProps({ params }) {
+  const info = await client.fetch(infoQuery);
+
+
+  return {
+    props: {
+      info,
+
+    },
+  };
+}
+
+export default function Home  ({ info }) {
+
+  console.log(info)
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const [menuActive, setMenuActive] = useState(false)
@@ -413,7 +469,7 @@ export default function Home({ posts }) {
     <>
     <Menu menuActive={menuActive} setMenuActive={setMenuActive}/>
       <ContainerOne style={{ justifyContent: "flex-start"}}>
-        <ColumnUI style={{ alignItems: "flex-start"}}>
+        <ColumnUI style={{ alignItems: "flex-start", minHeight: '100vh', flexDirection: 'column'}}>
 
 
 <TitleContainerUI>
@@ -475,22 +531,12 @@ export default function Home({ posts }) {
           src="/about.png"
         ></ImageAbout>
 
-        <ImageOne style={{ top: scrollPosition / 15 }}>
-          <img width="100%" src="/pho1.jpg" />
-          <CornerUI style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
 
-        </ImageOne>
-
-        <ImageTwo style={{ top: scrollPosition / 3 }}>
-          <img width="100%" src="/pho2.jpg" />
-       
-          <CornerUI style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
-        </ImageTwo>
 
         <img style={{ transition: '1s ease', position: 'absolute',bottom: '5px', left: -1000 + scrollPosition/5}} height="25px" src="/pattern.svg"/>
 
 
-        <ColumnUI>
+        <ColumnUI style={{margin:'100px 0 0 0', flexDirection: 'column'}}>
           <AboutHeaderUI>Our Story</AboutHeaderUI>
           <AboutTextUI>
             Van Le grew up in the south of Vietnam, in the city of Ho Chi Min.
@@ -508,32 +554,73 @@ export default function Home({ posts }) {
           </AboutTextUI>
         </ColumnUI>
 
-        <ColumnUI >
+        <ColumnReverseUI style={{margin:'200px 0 100px 0', alignItems: "center", justifyContent: "space-between"}}>
+
+          <LeftUI>
+
           <HeaderUI>We're Open</HeaderUI>
           <TextUI>
-            Monday - Thursday | 11:00 - 19:00
+            Monday - Thursday | {info && info[0].weekdayopen} - {info && info[0].weekdayclose}
             <br />
-            Friday - Saturday | 11:00 - 19:00
+            Friday - Saturday | {info && info[0].weekendopen} - {info && info[0].weekendclose}
             <br />
-            Sunday | 11:30 - 19:00
+            Sunday | {info && info[0].sundayopen} - {info && info[0].sundayclose}
           </TextUI>
-        </ColumnUI>
 
-        <ColumnUI style={{ alignItems: "flex-end", margin: '0 0 150px 0' }}>
-          <HeaderRightUI>Find Us At</HeaderRightUI>
-          <TextRightUI style={{margin: '0 0 100px 0'}}>
+            
+          </LeftUI>
+
+          <ImageOne style={{ top: -100 + scrollPosition / 15 }}>
+          <img width="100%" src="/pho1.jpg" />
+          <CornerUI style={{position:'absolute', width: '100px', top: '-15px', right: '-15px'}} src="/corner-r.svg" />
+
+        </ImageOne>
+
+
+        </ColumnReverseUI>
+
+        <ColumnUI style={{ alignItems: "center", justifyContent: "space-between", margin: '100px 0 200px 0' }}>
+
+        <ImageOne style={{ top: -100 + scrollPosition / 20 }}>
+          <img width="100%" src="/pho2.jpg" />
+       
+          <CornerUI style={{position:'absolute', width: '100px', bottom: '-15px', left: '-15px'}} src="/corner-l.svg" />
+        </ImageOne>
+
+          
+
+          <RightUI>
+
+       
+          
+          <HeaderUI>Find Us At</HeaderUI>
+          <TextUI >
             Bay #4,
             <br />
             6624 Centre Street S.E. Calgary, <br />
             Alberta T2H 0C3
             <br />
             <br />
-            <LinkUI href="tel:4032555665">(403)255-5665</LinkUI>
-          </TextRightUI>
+            <LinkUI href="tel:403-255-5665">(403) 255 - 5665</LinkUI>
+          </TextUI>
 
+
+
+          </RightUI>
+
+  
      
  
-          <Iframe
+
+  
+
+
+        </ColumnUI>
+
+
+<ColumnUI style={{margin: '0 0 200px 0'}}>
+
+<Iframe
             url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2511.1371786870677!2d-114.06467528408905!3d50.99513715584795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170f980369ca1%3A0xdcadd8804feeb8ed!2sLe%20La%20Vietnamese%20Restaurant!5e0!3m2!1sen!2sca!4v1627243766700!5m2!1sen!2sca"
             width="99%"
             id="myId"
@@ -541,23 +628,15 @@ export default function Home({ posts }) {
             height="500px"
        
           />
-  
+
+</ColumnUI>
 
 
-        </ColumnUI>
 
 
       </ContainerTwo>
     </>
   );
-}
+};
 
-export async function getStaticProps({ params }) {
-  const posts = await client.fetch(homeQuery);
 
-  return {
-    props: {
-      posts,
-    },
-  };
-}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
 import {Instagram, Facebook, Mail} from "react-feather"
+import { infoQuery } from "../lib/sanity/infoQuery";
 
 const HeaderUI = styled.div`
   display: flex;
@@ -61,6 +62,13 @@ align-items:  space-between;
 
 `;
 
+const HeadingUI = styled.div`
+font-size: 16px;
+display: flex;
+margin: 0 0 25px 0;
+font-weight: 700;
+`;
+
 const FooterTextUI = styled.div`
 font-size: 16px;
 display: flex;
@@ -103,7 +111,19 @@ color: white;
 }
 `
 
-export const Footer = ({ width }) => {
+export async function getStaticProps({ params }) {
+  const info = await client.fetch(infoQuery);
+
+
+  return {
+    props: {
+      info,
+
+    },
+  };
+}
+
+export const Footer = ({ info }) => {
 
   return (
 
@@ -113,8 +133,12 @@ export const Footer = ({ width }) => {
         <ContainerUI>
 
         <ColumnUI>
+          <HeadingUI>
+          Lê La 
+          </HeadingUI>
+
           <FooterTextUI>
-          Lê La <br/> Authentic Vietnamese Cuisine
+          Authentic Vietnamese Cuisine
           </FooterTextUI>
     
 
@@ -125,9 +149,9 @@ export const Footer = ({ width }) => {
           Alberta T2H 0C3<br/>
           </FooterTextUI>
 
-          <FooterTextUI>
-          (403)255-5665
-          </FooterTextUI>
+          <a style={{textDecoration: 'none', color: 'white', fontSize: '16px', fontWeight: '400', margin: '0 0 25px 0'}} href="tel:403-255-5665">
+          (403) 255 - 5665
+          </a>
       
    
           <LineUI/>
@@ -137,16 +161,16 @@ export const Footer = ({ width }) => {
 
 
           <ColumnUI>
-          <FooterTextUI>
+          <HeadingUI>
           Hours
-          </FooterTextUI>
+          </HeadingUI>
     
 
                 
           <FooterTextUI>
-          Monday - Thursday | 11:00 - 19:00<br/>
-          Friday - Saturday | 11:00 - 19:00<br/>
-          Sunday | 11:30 - 19:00<br/>
+          Monday - Thursday | {info && info[0].weekdayopen} - {info && info[0].weekdayclose}<br/>
+          Friday - Saturday | {info && info[0].weekendopen} - {info && info[0].weekendclose}<br/>
+          Sunday | {info && info[0].sundayopen} - {info && info[0].sundayclose}<br/>
           </FooterTextUI>
 
 
@@ -171,7 +195,7 @@ export const Footer = ({ width }) => {
  <Facebook size={24}/>
  </SocialLinkUI>
 
- <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 25px 0 0" }}>
+ <SocialLinkUI href="mailto:lelavietnamese@gmail.com" style={{ margin: "0 25px 0 0" }}>
  <Mail size={24}/>
  </SocialLinkUI>
           </FooterTextUI>
@@ -182,9 +206,9 @@ export const Footer = ({ width }) => {
           &copy; Lê La Vietnamese
           </FooterTextUI>
       
-          <FooterTextUI>
-          website by Julian Mayes
-          </FooterTextUI>
+          <a style={{textDecoration: 'none', color: 'white', fontSize: '16px', fontWeight: '400'}}target="_blank" href="https://julianmayes.dev/">
+          Website by Julian Mayes
+          </a>
           </ColumnUI>
 
         </ContainerUI>

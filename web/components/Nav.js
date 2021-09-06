@@ -6,12 +6,12 @@ import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
 import Menu from "./Menu";
 import MobileNav from "./MobileNav";
-import { Instagram, Facebook, Mail, X, Menu as MenuIcon } from "react-feather";
+import { Instagram, Facebook, Mail, X, Menu as MenuIcon, ShoppingCart } from "react-feather";
 import useWindowSize from "./useWindowSize";
 
 const HeaderUI = styled.div`
   display: flex;
-  height: 15vh;
+  height: 100px;
   width: 100%;
 
   position: fixed;
@@ -34,7 +34,7 @@ const BannerUI = styled.a`
   width: 100vw;
 
   position: fixed;
-  top: 15vh;
+  top: 100px;
   left: 0;
   border-bottom: 2px solid #ed2224;
   justify-content: center;
@@ -124,6 +124,18 @@ display: flex;
 align-items: center;
 cursor: pointer;
 
+
+
+`
+
+const MobileNavUI = styled.div`
+
+
+height: 100%;
+display: flex;
+align-items: center;
+cursor: pointer;
+
 @media (min-width: 1300px) {
   display: none;
 }
@@ -199,7 +211,7 @@ export const Nav = ({ width }) => {
     };
   }
 
-  const handleScroll = debounce(() => {
+/*   const handleScroll = debounce(() => {
     const currentScrollPos = window.pageYOffset;
 
     setCurrentScrollPosition(currentScrollPos);
@@ -217,7 +229,7 @@ export const Nav = ({ width }) => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, visible, handleScroll]);
+  }, [prevScrollPos, visible, handleScroll]); */
 
   return (
     <div>
@@ -237,7 +249,7 @@ export const Nav = ({ width }) => {
 
           <Link href="/">
             <LogoUI
-              style={{ width: "10vh", maxWidth: "75px" }}
+              style={{ width: "75px", maxWidth: "75px" }}
               src="/logo.svg"
             />
           </Link>
@@ -261,16 +273,26 @@ export const Nav = ({ width }) => {
 
             <Link href="/cart">
               <LinkUI>
-                cart
+                <ShoppingCart/>
                 {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
               </LinkUI>
             </Link>
           </NavUI>
 
 
+
+<MobileNavUI>
           <MobileIconUI>
             {mobileNavActive ? <X onClick={handleMobileMenu}/> : <MenuIcon onClick={handleMobileMenu}/>}
           </MobileIconUI>
+
+          <Link href="/cart">
+              <LinkUI>
+              <ShoppingCart/>
+                {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
+              </LinkUI>
+            </Link>
+            </MobileNavUI>
           
 
 

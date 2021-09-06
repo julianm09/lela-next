@@ -12,7 +12,7 @@ import {Instagram, Facebook, Mail, X, Menu} from 'react-feather'
 
 
 const BackdropUI = styled.div`
-  min-height: 85vh;
+  min-height: calc(100vh - 100px);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -26,7 +26,7 @@ background: white;
 cursor: pointer;
 
   position: absolute;
-  top: 15vh;
+  top: 100px;
   left: 0;
   width: 100%;
   z-index: 0;
@@ -105,14 +105,8 @@ export default function MobileNav({ mobileNavActive, setMobileNavActive, setMenu
   <LinkUI onClick={handleMobileMenu}I>merch</LinkUI>
 </Link>
 
-<Link href="/cart"
 
->
-  <LinkUI onClick={handleMobileMenu}>
-    cart
 
-  </LinkUI>
-</Link>
 
 
 

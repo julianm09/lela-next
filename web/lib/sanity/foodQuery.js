@@ -4,6 +4,7 @@ export const foodQuery = groq`
 *[_type=="food"]{
     name,
     description,
+    ingredients,
     price,
     method,
     "id": _id,

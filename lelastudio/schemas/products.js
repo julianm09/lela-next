@@ -14,6 +14,12 @@ export default {
         type: "text",
       },
       {
+        name: "ingredients",
+        title: "Ingredients",
+        description: "Leave Blank if item is not for pickup",
+        type: "text",
+      },
+      {
         title: 'Method',
         name: 'method',
         type: 'array',
