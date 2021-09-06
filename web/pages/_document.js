@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { CartProvider } from 'use-shopping-cart'
 
 
 import { ServerStyleSheet } from 'styled-components'
