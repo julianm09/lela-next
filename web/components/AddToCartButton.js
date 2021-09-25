@@ -128,7 +128,7 @@ const AddToCartButton = ({ product }) => {
   const [added, setAdded] = useState(false)
 
   const handleAddToCart = (product) => {
-    if (product.pickupdate < B) {
+    if (product.orderdate < B) {
       return;
     } else {
       setAdded(true);
@@ -148,10 +148,10 @@ const AddToCartButton = ({ product }) => {
 
   return (
     <ButtonUI
-      style={{ opacity: product.pickupdate < B ? "50%" : "100%" }}
+      style={{ opacity: product.orderdate < B ? "50%" : "100%" }}
       onClick={() => handleAddToCart(product)}
     >
-      {product.pickupdate < B ? "Out of Stock" : "Add To Cart"}
+      {product.orderdate < B ? "Out of Stock" : "Add To Cart"}
 
       <OverlayUI style={{ display: added ? "flex" : "none" }}> Added to Cart!</OverlayUI>
     </ButtonUI>

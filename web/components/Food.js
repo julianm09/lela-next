@@ -144,7 +144,9 @@ const Food = ({ food, scrollposition }) => {
   return (
     <GridUI style={{top: -scrollposition / 30}}>
       {food
-        .filter((product) => product.method == "pickup")
+        .filter((product) => product.method == "pickup").sort(function(a,b){
+          return new Date(b.pickupdate) - new Date(a.pickupdate);
+        })
         .map((product) => (
           <ContainerUI key={product.id}>
             <ImageContainerUI>
@@ -187,7 +189,7 @@ const Food = ({ food, scrollposition }) => {
 
               <ColumnUI>
                 <PickupUI style={{ color: "#ed2224", display: 'flex', justifyContent: 'flex-end' }}>
-                  order before {moment(product.pickupdate).format("MM/DD/YYYY")}
+                  order before {moment(product.orderdate).format("MM/DD/YYYY")}
                 </PickupUI>
 
                 <AddToCartButton product={product} />

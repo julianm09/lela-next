@@ -7,6 +7,7 @@ export const productsQuery = groq`
     price,
     method,
     ingredients,
+    orderdate,
     pickupdate,
     "id": _id,
     "image": image.asset->url,

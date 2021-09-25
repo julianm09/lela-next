@@ -45,7 +45,7 @@ const ColumnUI = styled.div`
 
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   color: #484349;
@@ -102,7 +102,7 @@ const Order = ({ products, food, scrollposition }) => {
 
 <HeaderUI>Merch</HeaderUI>
 
-<TextUI>Specialty items made to order.</TextUI>
+<TextUI>Coming Soon.</TextUI>
 
 
 <Products products={products} scrollposition={scrollposition}/>
