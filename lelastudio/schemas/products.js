@@ -16,7 +16,6 @@ export default {
       {
         name: "ingredients",
         title: "Ingredients",
-        description: "Leave Blank if item is not for pickup",
         type: "text",
       },
       {
@@ -32,9 +31,13 @@ export default {
         },
       },
       {
+        name: 'orderdate',
+        title: 'Order Before Date',
+        type: 'datetime',
+      },
+      {
         name: 'pickupdate',
         title: 'Pickup Date',
-        description: "Leave Blank if item is not for pickup",
         type: 'datetime',
       },
       {
