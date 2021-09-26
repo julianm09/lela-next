@@ -17,7 +17,7 @@ const BackdropUI = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: flex-start;
 
   color: #484349;
   font-family: "Noto Sans JP", sans-serif;
@@ -37,11 +37,12 @@ const ContainerUI = styled.div`
 
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     height: auto;
-  
+    margin: 50px 0 0 0;
+
     width: 80%;
 `;
 
@@ -69,6 +70,17 @@ const LinkUI = styled.a`
   }
 `;
 
+
+const SocialLinkUI = styled.a`
+
+cursor: pointer;
+color: #ED2024;
+
+
+&:hover{
+  color: #ED2024;
+}
+`
 
 
 export default function MobileNav({ mobileNavActive, setMobileNavActive, setMenuActive, menuActive, handleMobileMenu }) {
@@ -105,8 +117,21 @@ export default function MobileNav({ mobileNavActive, setMobileNavActive, setMenu
   <LinkUI onClick={handleMobileMenu}I>merch</LinkUI>
 </Link>
 
+<div style={{display: 'flex', width: '100%', margin: '100px 0 0 0', justifyContent: 'space-between'}}>
 
+<SocialLinkUI target="_blank" href="https://www.instagram.com/pholelavietnamese/?hl=en" style={{ margin: "0 25px 0 0" }}>
+  <Instagram size={24}/ >
+  </SocialLinkUI>
+ 
+ <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 25px 0 0" }}>
+ <Facebook size={24}/>
+ </SocialLinkUI>
 
+ <SocialLinkUI href="mailto:lelavietnamese@gmail.com" style={{ margin: "0 25px 0 0" }}>
+ <Mail size={24}/>
+ </SocialLinkUI>
+
+ </div>
 
 
 

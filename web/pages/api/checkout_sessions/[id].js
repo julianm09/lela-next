@@ -1,7 +1,7 @@
 // pages/api/checkout_sessions/[id].js
 
 import Stripe from "stripe";
-const stripe = new Stripe("sk_test_51JFU6sHU3r8RBID1anAbX1IJTDtSKkRlKloKvZU4gkgEqfz5EjXDJYHOQmgwOQ1a66yjBjetsltYMQ6lCDYoQimW00CPECtdiQ", {
+const stripe = new Stripe("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", {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: "2020-03-02",
 });
