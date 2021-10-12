@@ -4,6 +4,7 @@ import { CartSummary } from "../../components/CartSummary";
 import Products from "../../components/Products";
 import { client } from "../../lib/sanity/client";
 import { productsQuery } from "../../lib/sanity/productsQuery";
+import { infoQuery } from "../../lib/sanity/infoQuery";
 
 import styled from 'styled-components'
 
@@ -93,7 +94,7 @@ const AlertUI = styled.p`
   color: #ed2224;
 `;
 
-const Order = ({ products, food, scrollposition }) => {
+const Order = ({ products, food, scrollposition, info, }) => {
   return (
     <ContainerOne>
  
@@ -119,11 +120,12 @@ export default Order;
 
 export async function getStaticProps({ params }) {
   const products = await client.fetch(productsQuery);
-
+  const info = await client.fetch(infoQuery);
 
   return {
     props: {
       products,
+      info
 
     },
   };

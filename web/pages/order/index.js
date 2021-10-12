@@ -6,7 +6,7 @@ import { client } from "../../lib/sanity/client";
 import { merchQuery, productsQuery } from "../../lib/sanity/productsQuery";
 import { foodQuery } from "../../lib/sanity/foodQuery";
 import styled from 'styled-components'
-
+import { infoQuery } from "../../lib/sanity/infoQuery";
 import { Nav } from '../../components/Nav'
 import Food from "../../components/Food";
 import { useEffect, useState } from "react";
@@ -46,7 +46,7 @@ const ColumnUI = styled.div`
 
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   color: #484349;
@@ -96,7 +96,7 @@ const AlertUI = styled.p`
 `;
 
 
-const Order = ({ products, food, scrollposition }) => {
+const Order = ({ products, food, scrollposition,  }) => {
   
   return (
     <ContainerOne>
@@ -106,9 +106,9 @@ const Order = ({ products, food, scrollposition }) => {
 
 <HeaderUI>Made To Order</HeaderUI>
 
-<TextUI>Specialty items made to order.</TextUI>
+<TextUI>{products.length > 0  ? "Specialty items made to order." : "Coming Soon."  }</TextUI>
 
-<AlertUI>* All items must be picked up at our restaurant, pickup dates vary.</AlertUI>
+{products.length > 0  ? <AlertUI>* All items must be picked up at our restaurant, pickup dates vary.</AlertUI> : <></> }
 
 
 <Food food={products} scrollposition={scrollposition}/>
@@ -125,11 +125,13 @@ export default Order;
 
 export async function getStaticProps({ params }) {
   const products = await client.fetch(productsQuery);
+  const info = await client.fetch(infoQuery);
 
 
   return {
     props: {
       products,
+      info
 
     },
   };
