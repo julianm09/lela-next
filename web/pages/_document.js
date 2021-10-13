@@ -33,7 +33,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+        <title>Le La Calgary: Vietnamese Restaurant - Pho Delivery Takeout</title>
+        <meta property="og:title" content="Le La Calgary: Vietnamese Restaurant - Pho Delivery Takeout" key="title" />
+        <meta property="og:description" content="Le La Vietnamese Restaurant Calgary | Authentic Pho, Vermicelli, Subs | Takeout and Delivery | SkipTheDishes." key="description" />
+        </Head>
         <body>
           <Main />
           <NextScript />
