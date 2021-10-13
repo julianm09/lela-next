@@ -3,7 +3,9 @@ import { Footer } from '../components/Footer';
 import { Nav } from '../components/Nav'
 import useWindowSize from '../components/useWindowSize';
 import './app.css';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import Head from 'next/head'
+
 
 
 function MyApp({ Component, pageProps }) {

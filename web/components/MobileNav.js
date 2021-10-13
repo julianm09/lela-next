@@ -94,7 +94,8 @@ export default function MobileNav({ mobileNavActive, setMobileNavActive, setMenu
         <ContainerUI>
 
 
-<LinkUI onClick={() => setMenuActive(true)}>menu</LinkUI>
+<LinkUI target="_blank"
+              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu">menu</LinkUI>
 
 <LinkUI
   target="_blank"

@@ -254,7 +254,8 @@ export const Nav = ({ width }) => {
             />
           </Link>
           <NavUI>
-            <LinkUI onClick={() => setMenuActive(true)}>menu</LinkUI>
+            <LinkUI target="_blank"
+              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu" /* onClick={() => setMenuActive(true)} */>menu</LinkUI>
 
             <LinkUI
               target="_blank"
