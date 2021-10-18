@@ -340,7 +340,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 color: white;
-
+text-decoration: none;
 font-size: 18px;
 
 cursor: pointer;
@@ -493,9 +493,15 @@ export default function Home  ({ info, scrollPosition }) {
 
           <SubTitleUI>Authentic Vietnamese Cuisine</SubTitleUI>
 
-          <ButtonUI onClick={() => setMenuActive(true)}>
+
+
+          <a style={{textDecoration:'none'}} target="_blank"
+              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu">
+          <ButtonUI>
             Order Pickup
           </ButtonUI>
+
+          </a>
         </ColumnUI>
 
    
