@@ -206,7 +206,7 @@ export const Footer = ({ info }) => {
           &copy; Lê La Vietnamese
           </FooterTextUI>
       
-          <a style={{textDecoration: 'none', color: 'white', fontSize: '16px', fontWeight: '400'}}target="_blank" href="https://julianmayes.dev/">
+          <a style={{textDecoration: 'none', color: 'white', fontSize: '16px', fontWeight: '400'}}target="_blank" href="https://julianmayes.com/">
           Website by Julian Mayes
           </a>
           </ColumnUI>
