@@ -199,6 +199,7 @@ export default function Home({ info, scrollPosition }) {
                 left: "-15px",
               }}
               src="/corner-l.svg"
+              alt="Traditional Vietnamese pattern"
             />
           </ImageOne>
 
