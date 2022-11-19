@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Iframe from "react-iframe";
 
 import { Nav } from "../components/Nav";
-import {Instagram, Facebook, Mail, X} from 'react-feather'
+import { Instagram, Facebook, Mail, X } from "react-feather";
 
 const ContainerUI = styled.div`
   height: 100%;
@@ -37,9 +37,9 @@ const BackdropUI = styled.div`
   flex-direction: column;
   color: #484349;
   font-family: "Noto Sans JP", sans-serif;
-background: black;
-opacity: 80%;
-cursor: pointer;
+  background: black;
+  opacity: 80%;
+  cursor: pointer;
 
   position: absolute;
   top: 0px;
@@ -49,16 +49,14 @@ cursor: pointer;
 `;
 
 const CloseMenuUI = styled.div`
-
-
   position: absolute;
   top: 5%;
   right: 10%;
   color: white;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 200;
 
   border-radius: 50%;
@@ -66,46 +64,20 @@ const CloseMenuUI = styled.div`
   cursor: pointer;
 `;
 
-
-
-
-
 export default function Menu({ setMenuActive, menuActive }) {
-
-  
-
   return (
-  
-      <ContainerUI style={{display: menuActive ? 'flex' : 'none'}}>
+    <ContainerUI style={{ display: menuActive ? "flex" : "none" }}>
+      <BackdropUI onClick={() => setMenuActive(false)}></BackdropUI>
 
-          <BackdropUI onClick={() => setMenuActive(false)}>
+      <CloseMenuUI onClick={() => setMenuActive(false)}>Close Menu</CloseMenuUI>
 
-
-          </BackdropUI>
-
-
-<CloseMenuUI  onClick={() => setMenuActive(false)}>
-Close Menu
-</CloseMenuUI>
-        
-
-
-     
-          <Iframe
-            url="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
-            width="80%"
-            id="myId"
-            className="iframe"
-            height="80%"
-
-          />
-    
-
-
-
-
-      </ContainerUI>
-  
+      <Iframe
+        url="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+        width="80%"
+        id="myId"
+        className="iframe"
+        height="80%"
+      />
+    </ContainerUI>
   );
 }
-

@@ -137,14 +137,13 @@ const Food = ({ food, scrollposition }) => {
     } else {
       addItem(product);
     }
-
-    console.log(product.pickupdate < Date());
   };
 
   return (
-    <GridUI style={{top: -scrollposition / 30}}>
+    <GridUI style={{ top: -scrollposition / 30 }}>
       {food
-        .filter((product) => product.method == "pickup").sort(function(a,b){
+        .filter((product) => product.method == "pickup")
+        .sort(function (a, b) {
           return new Date(b.pickupdate) - new Date(a.pickupdate);
         })
         .map((product) => (
@@ -156,19 +155,19 @@ const Food = ({ food, scrollposition }) => {
             <InfoUI>
               <RowUI>
                 <ColumnUI>
+                  <RowUI
+                    style={{ width: "100%", justifyContent: "space-between" }}
+                  >
+                    <NameUI>{product.name}</NameUI>
 
-                <RowUI style={{width: '100%',  justifyContent: 'space-between'}}>
-                <NameUI>{product.name}</NameUI>
-
-<PriceUI>
-  {formatCurrencyString({
-    value: product.price,
-    currency: "cad",
-  })} CAD
-</PriceUI>
-
-
-                </RowUI>
+                    <PriceUI>
+                      {formatCurrencyString({
+                        value: product.price,
+                        currency: "cad",
+                      })}{" "}
+                      CAD
+                    </PriceUI>
+                  </RowUI>
 
                   <PickupUI>
                     {"pick up on " +
@@ -188,7 +187,13 @@ const Food = ({ food, scrollposition }) => {
               </RowUI>
 
               <ColumnUI>
-                <PickupUI style={{ color: "#ed2224", display: 'flex', justifyContent: 'flex-end' }}>
+                <PickupUI
+                  style={{
+                    color: "#ed2224",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                >
                   order before {moment(product.orderdate).format("MM/DD/YYYY")}
                 </PickupUI>
 

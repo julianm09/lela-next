@@ -1,19 +1,13 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useSWR from "swr";
-import PrintObject from "../components/PrintObject";
 import { fetchGetJSON } from "../utils/apiHelpers";
-import { productsQuery } from "../lib/sanity/productsQuery";
 import { useShoppingCart } from "use-shopping-cart";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import styled from "styled-components";
 
-
-
 const ContainerOne = styled.div`
-
-
   position: relative;
   display: flex;
   margin: 200px 0 200px 0;
@@ -25,7 +19,6 @@ const ContainerOne = styled.div`
 `;
 
 const RowUI = styled.div`
-  
   overflow: hidden;
   position: relative;
   display: flex;
@@ -42,8 +35,6 @@ const RowUI = styled.div`
 `;
 
 const ColumnUI = styled.div`
- 
-
   position: relative;
   display: flex;
   justify-content: center;
@@ -63,7 +54,6 @@ const ColumnUI = styled.div`
   }
 `;
 
-
 const HeaderUI = styled.h3`
   font-size: 56px;
   font-weight: 900;
@@ -72,7 +62,6 @@ const HeaderUI = styled.h3`
   -webkit-text-stroke-color: #ed2224;
   color: white;
   margin: 0;
-
 `;
 
 const TextUI = styled.p`
@@ -84,7 +73,6 @@ const TextUI = styled.p`
   margin: 50px 0 0px 0;
 `;
 
-
 const AlertUI = styled.p`
   font-size: 16px;
   font-weight: 500;
@@ -94,7 +82,6 @@ const AlertUI = styled.p`
   margin: 50px 0;
   color: #ed2224;
 `;
-
 
 const ResultPage = () => {
   const router = useRouter();
@@ -121,38 +108,25 @@ const ResultPage = () => {
     redirectToCheckout,
   } = useShoppingCart();
 
-  const [forPickup, setForPickup] = useState(false)
+  const [forPickup, setForPickup] = useState(false);
 
-  const [pickupDate, setPickupDate] = useState('')
+  const [pickupDate, setPickupDate] = useState("");
 
   useEffect(() => {
+    const objKeys = Object.keys(cartDetails);
 
-   const objKeys = Object.keys(cartDetails);
+    for (var i = 0; i < objKeys.length; i++) {
+      if (cartDetails[objKeys[i]].method.includes("pickup")) {
+        setForPickup(true);
+        setPickupDate(cartDetails[objKeys[i]].pickupdate);
+      }
+    }
 
-
-   for(var i = 0; i < objKeys.length; i++){
-
-    console.log(
-      cartDetails[objKeys[i]]
-     )
-
-if(cartDetails[objKeys[i]].method.includes('pickup')){
-setForPickup(true);
-setPickupDate(cartDetails[objKeys[i]].pickupdate)
-}
-    console.log(
-     cartDetails[objKeys[i]].method.includes('pickup')
-    )
-  
-  };
-
-  clearCart();
+    clearCart();
   }, []);
 
   return (
     <ContainerOne>
-  
-
       <h3>
         Thank you, {data?.payment_intent.charges.data[0].billing_details.name}.
       </h3>
@@ -162,17 +136,12 @@ setPickupDate(cartDetails[objKeys[i]].pickupdate)
       </p>
 
       <p>
-        {forPickup ? 'Pickup on ' : ''}
+        {forPickup ? "Pickup on " : ""}
         {moment(pickupDate).format("MM/DD/YYYY")}
       </p>
 
-      
-
-
-
-     
       <hr />
-{/*       <h2>Status: {data?.payment_intent?.status ?? "loading..."}</h2>
+      {/*       <h2>Status: {data?.payment_intent?.status ?? "loading..."}</h2>
       <h3>CheckoutSession response:</h3>
       <PrintObject content={data ?? "loading..."} /> */}
       <Link href="/">

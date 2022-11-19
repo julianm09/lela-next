@@ -6,14 +6,20 @@ import { useShoppingCart } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
 import Menu from "./Menu";
 import MobileNav from "./MobileNav";
-import { Instagram, Facebook, Mail, X, Menu as MenuIcon, ShoppingCart } from "react-feather";
+import {
+  Instagram,
+  Facebook,
+  Mail,
+  X,
+  Menu as MenuIcon,
+  ShoppingCart,
+} from "react-feather";
 import useWindowSize from "./useWindowSize";
 
 const HeaderUI = styled.div`
   display: flex;
   height: 100px;
   width: 100%;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -31,10 +37,9 @@ const HeaderUI = styled.div`
 const BannerUI = styled.a`
   display: flex;
   height: 48px;
-  width: 100vw;
-
   position: fixed;
   top: 100px;
+  width: 100vw;
   left: 0;
   border-bottom: 2px solid #ed2224;
   justify-content: center;
@@ -46,15 +51,19 @@ const BannerUI = styled.a`
   color: white;
   font-weight: 400;
   cursor: pointer;
+  text-decoration: none;
 
   @media (max-width: 400px) {
     font-size: 12px;
+  }
+
+  &:hover{
+    text-decoration: underline;
   }
 `;
 
 const ContainerUI = styled.div`
   display: flex;
-
   width: 50%;
 
   justify-content: space-between;
@@ -67,10 +76,7 @@ const ContainerUI = styled.div`
 
 const NavUI = styled.div`
   display: flex;
-  height: 150px;
-
   min-height: 100px;
-
   justify-content: flex-end;
   align-items: center;
 
@@ -109,7 +115,6 @@ const LinkUI = styled.a`
   display: flex;
   position: relative;
   color: #484349;
-  
 
   &:hover {
     color: #ed2224;
@@ -117,30 +122,22 @@ const LinkUI = styled.a`
 `;
 
 const MobileIconUI = styled.div`
-
-
-height: 100%;
-display: flex;
-align-items: center;
-cursor: pointer;
-
-
-
-`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
 
 const MobileNavUI = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
-
-height: 100%;
-display: flex;
-align-items: center;
-cursor: pointer;
-
-@media (min-width: 1300px) {
-  display: none;
-}
-
-`
+  @media (min-width: 1300px) {
+    display: none;
+  }
+`;
 
 export const Nav = ({ width }) => {
   //setting up some React states for our cart
@@ -170,66 +167,24 @@ export const Nav = ({ width }) => {
     redirectToCheckout({ sessionId: response.id });
   };
 
-
-
-
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
   const [menuActive, setMenuActive] = useState(false);
   const [mobileNavActive, setMobileNavActive] = useState(false);
 
   const handleMobileMenu = () => {
-    setMobileNavActive(!mobileNavActive)
+    setMobileNavActive(!mobileNavActive);
 
-    mobileNavActive ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
-    
-  }
+    mobileNavActive
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
+  };
 
   useEffect(() => {
     if (width >= 1000) {
       setMobileNavActive(false);
-      document.body.style.overflow = "auto"
+      document.body.style.overflow = "auto";
     }
   }, [width]);
-
-
-
-  function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-      var context = this,
-        args = arguments;
-      var later = function () {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      var callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
-  }
-
-/*   const handleScroll = debounce(() => {
-    const currentScrollPos = window.pageYOffset;
-
-    setCurrentScrollPosition(currentScrollPos);
-
-    setVisible(
-      (prevScrollPos > currentScrollPos &&
-        prevScrollPos - currentScrollPos > 70) ||
-        currentScrollPos < 10
-    );
-
-    setPrevScrollPos(currentScrollPos);
-  }, 100);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, visible, handleScroll]); */
 
   return (
     <div>
@@ -251,11 +206,16 @@ export const Nav = ({ width }) => {
             <LogoUI
               style={{ width: "75px", maxWidth: "75px" }}
               src="/logo.svg"
+              alt="Le La Logo"
             />
           </Link>
           <NavUI>
-            <LinkUI target="_blank"
-              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu" /* onClick={() => setMenuActive(true)} */>menu</LinkUI>
+            <LinkUI
+              target="_blank"
+              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu" /* onClick={() => setMenuActive(true)} */
+            >
+              menu
+            </LinkUI>
 
             <LinkUI
               target="_blank"
@@ -264,7 +224,7 @@ export const Nav = ({ width }) => {
               takeout
             </LinkUI>
 
-            <Link href="/order">
+            {/*             <Link href="/order">
               <LinkUI>made to order</LinkUI>
             </Link>
 
@@ -277,32 +237,31 @@ export const Nav = ({ width }) => {
                 <ShoppingCart/>
                 {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
               </LinkUI>
-            </Link>
+            </Link> */}
           </NavUI>
 
+          <MobileNavUI>
+            <MobileIconUI>
+              {mobileNavActive ? (
+                <X onClick={handleMobileMenu} />
+              ) : (
+                <MenuIcon onClick={handleMobileMenu} />
+              )}
+            </MobileIconUI>
 
-
-<MobileNavUI>
-          <MobileIconUI>
-            {mobileNavActive ? <X onClick={handleMobileMenu}/> : <MenuIcon onClick={handleMobileMenu}/>}
-          </MobileIconUI>
-
-          <Link href="/cart">
+            {/*             <Link href="/cart">
               <LinkUI>
-              <ShoppingCart/>
+                <ShoppingCart />
                 {cartCount < 1 ? "" : <CartCountUI>{cartCount}</CartCountUI>}
               </LinkUI>
-            </Link>
-            </MobileNavUI>
-          
-
-
+            </Link> */}
+          </MobileNavUI>
         </ContainerUI>
       </HeaderUI>
 
       <BannerUI
         target="_blank"
-        onClick={() => setMenuActive(true)}
+        href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu" /* onClick={() => setMenuActive(true)} */
         style={{
           transform: visible ? "translateY(0px)" : "translateY(-15vh)",
         }}

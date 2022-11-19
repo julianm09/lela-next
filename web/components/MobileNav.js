@@ -7,9 +7,7 @@ import styled from "styled-components";
 import Iframe from "react-iframe";
 
 import { Nav } from "./Nav";
-import {Instagram, Facebook, Mail, X, Menu} from 'react-feather'
-
-
+import { Instagram, Facebook, Mail, X, Menu } from "react-feather";
 
 const BackdropUI = styled.div`
   min-height: calc(100vh - 100px);
@@ -21,9 +19,9 @@ const BackdropUI = styled.div`
 
   color: #484349;
   font-family: "Noto Sans JP", sans-serif;
-background: white;
+  background: white;
 
-cursor: pointer;
+  cursor: pointer;
 
   position: absolute;
   top: 100px;
@@ -33,27 +31,23 @@ cursor: pointer;
 `;
 
 const ContainerUI = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: auto;
+  margin: 50px 0 0 0;
 
-
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    height: auto;
-    margin: 50px 0 0 0;
-
-    width: 80%;
+  width: 80%;
 `;
 
 const LinkUI = styled.a`
   text-decoration: none;
   cursor: pointer;
-  margin: 1vh 0px;
+  margin: 50px 0px;
   display: flex;
   position: relative;
   color: #484349;
-
 
   font-size: 48px;
   font-weight: 900;
@@ -65,91 +59,88 @@ const LinkUI = styled.a`
     color: #ed2224;
   }
 
-  @media(max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 10vw;
   }
 `;
 
-
 const SocialLinkUI = styled.a`
+  cursor: pointer;
+  color: #ed2024;
 
-cursor: pointer;
-color: #ED2024;
+  &:hover {
+    color: #ed2024;
+  }
+`;
 
-
-&:hover{
-  color: #ED2024;
-}
-`
-
-
-export default function MobileNav({ mobileNavActive, setMobileNavActive, setMenuActive, menuActive, handleMobileMenu }) {
-
-
-
+export default function MobileNav({
+  mobileNavActive,
+  setMobileNavActive,
+  setMenuActive,
+  menuActive,
+  handleMobileMenu,
+}) {
   return (
-  
-      <BackdropUI style={{display: mobileNavActive ? 'flex' : 'none'}}>
+    <BackdropUI style={{ display: mobileNavActive ? "flex" : "none" }}>
+      <ContainerUI>
+        <LinkUI
+          target="_blank"
+          href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu"
+        >
+          menu
+        </LinkUI>
 
-        <ContainerUI>
+        <LinkUI
+          target="_blank"
+          href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
+          onClick={handleMobileMenu}
+        >
+          takeout
+        </LinkUI>
 
+        {/*         <Link href="/order">
+          <LinkUI onClick={handleMobileMenu}>made to order</LinkUI>
+        </Link>
 
-<LinkUI target="_blank"
-              href="https://lelavietnamese.gpr.globalpaymentsinc.ca/menu">menu</LinkUI>
+        <Link href="/merch">
+          <LinkUI onClick={handleMobileMenu} I>
+            merch
+          </LinkUI>
+        </Link> */}
 
-<LinkUI
-  target="_blank"
-  href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
-  onClick={handleMobileMenu}
- 
->
-  takeout
-</LinkUI>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            margin: "100px 0 0 0",
+            justifyContent: "space-between",
+          }}
+        >
+          <SocialLinkUI
+            target="_blank"
+            href="https://www.instagram.com/pholelavietnamese/?hl=en"
+            aria-label="Instagram"
+            style={{ margin: "0 25px 0 0" }}
+          >
+            <Instagram size={24} />
+          </SocialLinkUI>
 
+{/*           <SocialLinkUI
+            target="_blank"
+            href="https://www.facebook.com/lelavietnamesee/"
+            style={{ margin: "0 25px 0 0" }}
+          >
+            <Facebook size={24} />
+          </SocialLinkUI> */}
 
-<Link href="/order"
-
->
-  <LinkUI onClick={handleMobileMenu}>made to order</LinkUI>
-</Link>
-
-<Link href="/merch"
->
-  <LinkUI onClick={handleMobileMenu}I>merch</LinkUI>
-</Link>
-
-<div style={{display: 'flex', width: '100%', margin: '100px 0 0 0', justifyContent: 'space-between'}}>
-
-<SocialLinkUI target="_blank" href="https://www.instagram.com/pholelavietnamese/?hl=en" style={{ margin: "0 25px 0 0" }}>
-  <Instagram size={24}/ >
-  </SocialLinkUI>
- 
- <SocialLinkUI target="_blank" href="https://www.facebook.com/lelavietnamesee/" style={{ margin: "0 25px 0 0" }}>
- <Facebook size={24}/>
- </SocialLinkUI>
-
- <SocialLinkUI href="mailto:lelavietnamese@gmail.com" style={{ margin: "0 25px 0 0" }}>
- <Mail size={24}/>
- </SocialLinkUI>
-
- </div>
-
-
-
-
-        
-
-
-               
-</ContainerUI>
-
-
-
-
-
-
-      </BackdropUI>
-  
+          <SocialLinkUI
+            href="mailto:lelavietnamese@gmail.com"
+            style={{ margin: "0 25px 0 0" }}
+          >
+            <Mail size={24} />
+          </SocialLinkUI>
+        </div>
+      </ContainerUI>
+    </BackdropUI>
   );
 }
-

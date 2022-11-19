@@ -112,8 +112,6 @@ const OverlayUI = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 `;
 
 const AddToCartButton = ({ product }) => {
@@ -121,11 +119,11 @@ const AddToCartButton = ({ product }) => {
 
   var dateobj = new Date();
 
-    // Contents of above date object is converted
+  // Contents of above date object is converted
   // into a string using toISOString() function.
   var B = dateobj.toISOString();
 
-  const [added, setAdded] = useState(false)
+  const [added, setAdded] = useState(false);
 
   const handleAddToCart = (product) => {
     if (product.orderdate < B) {
@@ -134,17 +132,10 @@ const AddToCartButton = ({ product }) => {
       setAdded(true);
       setTimeout(() => {
         setAdded(false);
-      },1000)
+      }, 1000);
       addItem(product);
     }
-
-    console.log(product.pickupdate )
-    console.log(dateobj)
   };
-
-
-
-
 
   return (
     <ButtonUI
@@ -153,7 +144,10 @@ const AddToCartButton = ({ product }) => {
     >
       {product.orderdate < B ? "Out of Stock" : "Add To Cart"}
 
-      <OverlayUI style={{ display: added ? "flex" : "none" }}> Added to Cart!</OverlayUI>
+      <OverlayUI style={{ display: added ? "flex" : "none" }}>
+        {" "}
+        Added to Cart!
+      </OverlayUI>
     </ButtonUI>
   );
 };

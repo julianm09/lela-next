@@ -148,12 +148,10 @@ const Products = ({ products, scrollposition }) => {
     } else {
       addItem(product);
     }
-
-    console.log(product.pickupdate < Date());
   };
 
   return (
-    <GridUI style={{top: -scrollposition / 30}}>
+    <GridUI style={{ top: -scrollposition / 30 }}>
       {products
         .filter((product) => product.method == "deliver")
         .map((product) => (
@@ -165,21 +163,19 @@ const Products = ({ products, scrollposition }) => {
             <InfoUI>
               <RowUI>
                 <ColumnUI>
+                  <RowUI
+                    style={{ width: "100%", justifyContent: "space-between" }}
+                  >
+                    <NameUI>{product.name}</NameUI>
 
-                <RowUI style={{width: '100%',  justifyContent: 'space-between'}}>
-                <NameUI>{product.name}</NameUI>
-
-<PriceUI>
-  {formatCurrencyString({
-    value: product.price,
-    currency: "cad",
-  })} CAD
-</PriceUI>
-
-
-                </RowUI>
-
-                 
+                    <PriceUI>
+                      {formatCurrencyString({
+                        value: product.price,
+                        currency: "cad",
+                      })}{" "}
+                      CAD
+                    </PriceUI>
+                  </RowUI>
                 </ColumnUI>
               </RowUI>
 
@@ -187,11 +183,7 @@ const Products = ({ products, scrollposition }) => {
                 <DescriptionUI>{product.description}</DescriptionUI>
               </RowUI>
 
-
-
               <ColumnUI>
-                
-
                 <AddToCartButton product={product} />
               </ColumnUI>
             </InfoUI>

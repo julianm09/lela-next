@@ -32,7 +32,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
         <title>Le La Calgary: Vietnamese Restaurant - Pho Delivery Takeout</title>
         <meta property="og:title" content="Le La Calgary: Vietnamese Restaurant - Pho Delivery Takeout" key="title" />

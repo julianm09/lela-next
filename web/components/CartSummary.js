@@ -145,7 +145,6 @@ export const CartSummary = () => {
     );
   }, [cartDetails]);
 
-  console.log(arr);
   //sets our cartEmpty state with cart data
   useEffect(() => setCartEmpty(!cartCount), [cartCount]);
 
@@ -240,7 +239,7 @@ export const CartSummary = () => {
           <strong>Total:</strong> {formattedTotalPrice} CAD
         </p>
 
-    {/*     <p>Use 4242 4242 4242 4242 as the card number.</p> */}
+        {/*     <p>Use 4242 4242 4242 4242 as the card number.</p> */}
 
         <ButtonUI
           className="cart-style-background"
@@ -253,8 +252,7 @@ export const CartSummary = () => {
         <ButtonUI
           style={{
             color: "white",
-            background:"#ed2224"
-
+            background: "#ed2224",
           }}
           className="cart-style-background"
           type="submit"
