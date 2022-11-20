@@ -221,7 +221,7 @@ export const Nav = ({ width }) => {
               target="_blank"
               href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
             >
-              takeout
+              delivery
             </LinkUI>
 
             {/*             <Link href="/order">

@@ -95,7 +95,7 @@ export default function MobileNav({
           href="https://www.skipthedishes.com/le-la-vietnamese-restaurant-centre-st"
           onClick={handleMobileMenu}
         >
-          takeout
+          delivery
         </LinkUI>
 
         {/*         <Link href="/order">
